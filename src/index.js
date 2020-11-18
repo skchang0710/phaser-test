@@ -3,6 +3,12 @@ import IsoPlugin, { IsoPhysics } from "phaser3-plugin-isometric";
 import grassTileData from "./assets/grassTile.json";
 import grassTileImg from "./assets/grassTile.png";
 
+
+const tallTight = 38;
+const tileHeight = grassTileData.height - tallTight;
+const zTallMargin = -10;
+
+
 class playGame extends Phaser.Scene {
   constructor() {
     const sceneConfig = {
@@ -34,16 +40,26 @@ class playGame extends Phaser.Scene {
 		// create tile group
 		this.isoTiles = this.add.group();
 		// set default camera placement
-		this.iso.projector.origin.setTo(0.5, 0.3);
+		this.iso.projector.origin.setTo(0.5, 0.1);
 
-		let tile = this.add.isoSprite(
-			0,
-			0,
-			-10,
-			"grassTile",
-			this.isoTiles
-		);
+		let tile = this.add.isoSprite(0, 0, zTallMargin, "grassTile", this.isoTiles);
 		tile.setInteractive();
+
+		this.add.isoSprite(0, tileHeight, zTallMargin, "grassTile", this.isoTiles);
+		this.add.isoSprite(0, 2*tileHeight, zTallMargin, "grassTile", this.isoTiles);
+		this.add.isoSprite(0, 3*tileHeight, zTallMargin, "grassTile", this.isoTiles);
+		this.add.isoSprite(0, 4*tileHeight, zTallMargin, "grassTile", this.isoTiles);
+
+		this.add.isoSprite(tileHeight, tileHeight, zTallMargin, "grassTile", this.isoTiles);
+		this.add.isoSprite(2*tileHeight, 2*tileHeight, zTallMargin, "grassTile", this.isoTiles);
+		this.add.isoSprite(3*tileHeight, tileHeight, zTallMargin, "grassTile", this.isoTiles);
+
+		this.add.isoSprite(4*tileHeight, 0, zTallMargin, "grassTile", this.isoTiles);
+		this.add.isoSprite(4*tileHeight, tileHeight, zTallMargin, "grassTile", this.isoTiles);
+		this.add.isoSprite(4*tileHeight, 2*tileHeight, zTallMargin, "grassTile", this.isoTiles);
+		this.add.isoSprite(4*tileHeight, 3*tileHeight, zTallMargin, "grassTile", this.isoTiles);
+		this.add.isoSprite(4*tileHeight, 4*tileHeight, zTallMargin, "grassTile", this.isoTiles);
+		console.log(this.isoTiles);
   }
 }
 
